@@ -33,6 +33,7 @@ class Task(models.Model):
         verbose_name='id'
     )
     state = models.IntegerField(
+        # 0 means available task
         default=0,
         blank=False,
         verbose_name='state'
