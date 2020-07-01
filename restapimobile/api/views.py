@@ -34,7 +34,7 @@ class AvailableTaskView(APIView):
         for task in tasks:
             task_id = Task._meta.get_field('task_id').value_from_object(task)
             state = Task._meta.get_field('state').value_from_object(task)
-            # 0 means that task can execute            
+            # 0 means that task can execute
             if state == 0:
                 task_ids.append(task_id)
                 states.append(state)
