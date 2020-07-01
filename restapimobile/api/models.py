@@ -1,5 +1,7 @@
 import uuid
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 
 # Create your models here.
 class Customer(models.Model):
@@ -20,17 +22,20 @@ class Customer(models.Model):
 class Device(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, 
         editable=False, unique=True, db_index=True)    
-    device_id = models.CharField(
-        max_length=255,
+    device_id = models.UUIDField(
         unique=True,
         verbose_name='device_id'
     )
     customer = models.ForeignKey(Customer, related_name='device', on_delete=models.CASCADE)
 
 class Task(models.Model):
-    _id = models.IntegerField()
-    state = models.CharField(
-        max_length=255,
+    task_id = models.IntegerField(
+        blank=False,
+        verbose_name='id'
+    )
+    state = models.IntegerField(
+        default=0,
+        validators=[MinValueValidator(0), MaxValueValidator(2)],
         blank=False,
         verbose_name='state'
     )

@@ -16,6 +16,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Device
         fields = [
+            'device_id',
             'customer',
             'uuid'
         ]
@@ -25,6 +26,7 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = [
+            'task_id',
             'state',
             'customer',
             'device',
