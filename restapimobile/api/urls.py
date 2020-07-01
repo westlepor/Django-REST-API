@@ -9,5 +9,8 @@ router.register(r'device', views.DeviceViewSet)
 router.register(r'task', views.TaskViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
+    path('api/available_task/<device_id>', views.AvailableTaskView.as_view()),
+    path('api/execute/<device_id>/<task_id>', views.ExecutedTaskView.as_view()),
+    path('api/result/<device_id>/<task_id>/<result>', views.ResultTaskView.as_view())
 ]

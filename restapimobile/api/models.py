@@ -20,8 +20,6 @@ class Customer(models.Model):
     )
 
 class Device(models.Model):
-    uuid = models.UUIDField(default=uuid.uuid4, 
-        editable=False, unique=True, db_index=True)    
     device_id = models.UUIDField(
         unique=True,
         verbose_name='device_id'
@@ -31,13 +29,23 @@ class Device(models.Model):
 class Task(models.Model):
     task_id = models.IntegerField(
         blank=False,
+        unique=True,
         verbose_name='id'
     )
     state = models.IntegerField(
         default=0,
-        validators=[MinValueValidator(0), MaxValueValidator(2)],
         blank=False,
         verbose_name='state'
+    )
+    executed = models.BooleanField(
+        default=False,
+        verbose_name='execute'
+    )
+    result = models.IntegerField(
+        default=-1,
+        validators=[MinValueValidator(0), MaxValueValidator(2)],
+        blank=False,
+        verbose_name='result'
     )
     customer = models.ForeignKey(Customer, related_name='task', on_delete=models.CASCADE)
     device = models.ForeignKey(Device, related_name='task', on_delete=models.CASCADE)
