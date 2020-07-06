@@ -2,7 +2,6 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.db.models import F
 
 from .models import Customer, Device, Task
 from .serializers import CusotmerSerializer, DeviceSerializer, TaskSerializer
