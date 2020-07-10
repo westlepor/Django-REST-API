@@ -30,5 +30,7 @@ class TaskSerializer(serializers.ModelSerializer):
             'state',
             'customer',
             'device',
+            'result',
+            'executed',
             'uuid'
         ]
